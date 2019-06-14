@@ -18,27 +18,27 @@ $user->created = date('Y-m-d H:i:s');
  
 // create the user
 if($user->signup()){
-	// Redirect browser 
-	header("Location: http://seguridad.webcrashers.local/index.html"); 
-	exit;
-	
+    // Redirect browser 
+    header("Location: http://localhost/index.html"); 
+    exit;
+    
     /*$user_arr=array(
         "status" => true,
         "message" => "Successfully Signup!",
         "id" => $user->id,
         "username" => $user->username
     );*/
-	
+    
 }
 else{
     // Redirect browser
-	header("Location: http://seguridad.webcrashers.local/index.html"); 
-	exit;
-	/*$user_arr=array(
+    header("Location: http://localhost/index.html"); 
+    exit;
+    /*$user_arr=array(
         "status" => false,
         "message" => "Username already exists!"
     );
-	header('Location: index.html');*/
+    header('Location: index.html');*/
 }
 print_r(json_encode($user_arr));
 ?>

@@ -1,9 +1,9 @@
 <?php
 class User{
  
-	// Sal para el hash
-	private $salt = "unaSal";
-	
+    // Sal para el hash
+    private $salt = "unaSal";
+    
     // database connection and table name
     private $conn;
     private $table_name = "users";
@@ -38,8 +38,7 @@ class User{
         // sanitize and hash
         $this->username=htmlspecialchars(strip_tags($this->username));
         $this->password=password_hash(htmlspecialchars(strip_tags($this->password)), PASSWORD_BCRYPT); //Aca estamos hasheando con BLOWFISH y generando la SAL aleatoria
-        //$this->password=hash("sha256", $this->salt ."". htmlspecialchars(strip_tags($this->password)));
-		$this->created=htmlspecialchars(strip_tags($this->created));
+        $this->created=htmlspecialchars(strip_tags($this->created));
     
         // bind values
         $stmt->bindParam(":username", $this->username);
@@ -64,7 +63,7 @@ class User{
                 FROM
                     " . $this->table_name . " 
                 WHERE
-                    username='".$this->username."' AND password='".$this->password."'";
+                    username='".$this->username."'"; 
 
         // prepare query statement
         $stmt = $this->conn->prepare($query);

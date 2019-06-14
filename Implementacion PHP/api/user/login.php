@@ -14,21 +14,32 @@ $user->username = isset($_GET['username']) ? $_GET['username'] : die();
 $user->password = isset($_GET['password']) ? $_GET['password'] : die();
 // read the details of user to be edited
 $stmt = $user->login();
+//mirar user login que es lo que deja cero
+
 if($stmt->rowCount() > 0){
     // get retrieved row
+    //fetch devuelve la siguiente fila del resultado de la query en la que se accede al contenido con los nombres de las columnas en lugar de indice
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
-    // create array
-    $user_arr=array(
-        "status" => true,
-        "message" => "Successfully Login!",
-        "id" => $row['id'],
-        "username" => $row['username']
-    );
+    if(password_verify($user->password, $row['password'])){
+        // create array
+        $user_arr=array(
+            "status" => true,
+            "message" => "Successfully Login!",
+            "id" => $row['id'],
+            "username" => $row['username']
+        );
+    }
+    else{
+        $user_arr=array(
+            "status" => false,
+            "message" => "Invalid Username or Password!",
+        );
+    }
 }
 else{
     $user_arr=array(
         "status" => false,
-        "message" => "Invalid Username or Password!",
+        "message" => "Invalid Username",
     );
 }
 // make it json format
