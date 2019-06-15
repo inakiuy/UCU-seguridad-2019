@@ -9,12 +9,11 @@ $db = $database->getConnection();
  
 // prepare user object
 $user = new User($db);
-// set ID property of user to be edited
+// set ID property of user to be loged in
 $user->username = isset($_GET['username']) ? $_GET['username'] : die();
 $user->password = isset($_GET['password']) ? $_GET['password'] : die();
-// read the details of user to be edited
+// read the details of user to be loged in
 $stmt = $user->login();
-//mirar user login que es lo que deja cero
 
 if($stmt->rowCount() > 0){
     // get retrieved row
@@ -42,6 +41,8 @@ else{
         "message" => "Invalid Username",
     );
 }
+
+// Imprimir en el cuerpo de la respuesta el array del status en formato json
 // make it json format
 print_r(json_encode($user_arr));
 ?>

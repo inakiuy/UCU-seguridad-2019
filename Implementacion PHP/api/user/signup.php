@@ -2,6 +2,9 @@
  
 // get database connection
 include_once '../config/database.php';
+
+// incluir configuracion del sitio
+include_once '../config/inc_config.php';
  
 // instantiate user object
 include_once '../objects/user.php';
@@ -19,26 +22,26 @@ $user->created = date('Y-m-d H:i:s');
 // create the user
 if($user->signup()){
     // Redirect browser 
-    header("Location: http://localhost/index.html"); 
-    exit;
-    
+    header("Location: http://$WEBSERVER/index.html"); 
+    exit;    
     /*$user_arr=array(
         "status" => true,
         "message" => "Successfully Signup!",
         "id" => $user->id,
         "username" => $user->username
-    );*/
-    
+    );*/    
 }
 else{
     // Redirect browser
-    header("Location: http://localhost/index.html"); 
+    header("Location: http://$WEBSERVER/index.html"); 
     exit;
     /*$user_arr=array(
         "status" => false,
         "message" => "Username already exists!"
-    );
-    header('Location: index.html');*/
+    );*/
 }
+
+// Imprimir en el cuerpo de la respuesta el array del status en formato json
+// make it json format
 print_r(json_encode($user_arr));
 ?>

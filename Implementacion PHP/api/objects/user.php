@@ -1,8 +1,5 @@
 <?php
 class User{
- 
-    // Sal para el hash
-    private $salt = "unaSal";
     
     // database connection and table name
     private $conn;
