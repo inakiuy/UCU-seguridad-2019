@@ -1,4 +1,5 @@
 <?php
+
 // include database and object files
 include_once '../config/database.php';
 include_once '../objects/user.php';
@@ -20,6 +21,12 @@ if($stmt->rowCount() > 0){
     //fetch devuelve la siguiente fila del resultado de la query en la que se accede al contenido con los nombres de las columnas en lugar de indice
     $row = $stmt->fetch(PDO::FETCH_ASSOC);
     if(password_verify($user->password, $row['password'])){
+        //fila agregada
+        session_start();
+        
+        //fila agregada, variable de sesion usuario con valor username
+        $_SESSION['usuario'] = $user->username;
+
         // create array
         $user_arr=array(
             "status" => true,
@@ -27,6 +34,9 @@ if($stmt->rowCount() > 0){
             "id" => $row['id'],
             "username" => $row['username']
         );
+
+        //fila agregada para redirigir
+        header("Location:panelSesion.php");
     }
     else{
         $user_arr=array(
