@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" >
+	<head>
+	  <meta charset="UTF-8">
+	  <title>UCU - Seguridad Informatica 2019v2</title>
+	  
+	  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans:600'>
+	  <link rel="stylesheet" href="./assets/css/style.css">
+	</head>
+
+	<body>
+	<div class="login-wrap">
+		<div class="login-html cifrado">
+			<form action="./api/file/firmado.php" method="post" enctype="multipart/form-data">
+				Seleccione el archivo a firmar:<br><br>
+				<input type="file" name="fileToUpload" id="fileToUpload"><br>
+				<input type="submit" value="Firmar Archivo" name="submit"><br>
+			</form>
+		</div>
+	</div>
+	</body>
+</html>
