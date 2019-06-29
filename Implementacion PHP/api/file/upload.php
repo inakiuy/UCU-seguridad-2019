@@ -1,24 +1,22 @@
+<>
+
 <?php
 // incluir configuracion del sitio
 include_once '../config/inc_config.php';
 
+// incluir las funciones de cifrado y descifrado
+include_once './crypto.php';
+
 $target_dir = "../../uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$tmp_filename = $_FILES["fileToUpload"]["tmp_name"];
 $uploadOk = 1;
 
 // Insertar link para volver
 echo "<a href='http://$WEBSERVER/cifrado.html'>Volver</a><br>";
 
-// Check if file already exists
-if (file_exists($target_file)) {
-    echo 'Lo sentimos, el archivo ya existe (Posible enumeracion de archivos).<br>';
-    $uploadOk = 0;
-}
-// Check file size
-if ($_FILES["fileToUpload"]["size"] > 500000) {
-    echo 'Lo sentimos, su archivo es muy grande (Posible filtrado de informacion de configuracion de PHP)<br>';
-    $uploadOk = 0;
-}
+// Cifrar
+encrypt($tmp_filename, "password");
 
 // Check if $uploadOk is set to 0 by an error
 if ($uploadOk == 0) {
