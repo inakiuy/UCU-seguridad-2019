@@ -7,6 +7,7 @@ include_once './firma.php';
 
 $target_dir = "../../documentos/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$tmp_filename = $_FILES["fileToUpload"]["tmp_name"];
 $firmadoOk = 1;
 
 // Insertar link para volver
@@ -26,7 +27,7 @@ if ($_FILES["fileToUpload"]["size"] > 500000) {
 print_r("PASO 1 - Antes de firmar!");print_r("<br />");
 print_r("PASO 1.1 $target_file");print_r("<br />");
 // Firmar
-$firmadoOk = signature($target_file, "password");
+$firmadoOk = Signature($tmp_filename, $target_dir );
 
 
 // Check if $uploadOk is set to 0 by an error
