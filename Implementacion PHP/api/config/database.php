@@ -3,9 +3,9 @@ class Database{
  
     // specify your own database credentials
     private $host = "localhost";
-    private $db_name = "seguridad";
-    private $username = "elusuariodeestabase";
-    private $password = "unapassword";
+    private $db_name = "seguridad2019";
+    private $username = "phpmyadmin";
+    private $password = "phpmy4adm1n";
     public $conn;
  
     // get the database connection

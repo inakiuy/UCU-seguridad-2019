@@ -2,19 +2,26 @@
 
 function signature(string $filename, string $key) {
 
+	print_r("PASO 2 - Entro en funcion signature!");print_r("<br />");
+	
     //Datos que se quieren firmar:
 	//$datos = 'Este texto será firmado. Thanks for your attention :)';
-	$file = fopen($filename, 'rb');//rd: read en modo binario
+	//$file = fopen($filename, 'rb');//rd: read en modo binario ASI ESTABA COMENTE PARA PROBAR!
+	$filename= 'C:\xampp\htdocs\uploads\hola.txt';//me da error la ruta de archivo, crear un archivo hola.txt con cualquier cosa dentro para probar.
+	$file = fopen($filename, 'rb');
 	$datos = fread($file, filesize($filename));
     fclose($file);
+	
 	
 	//Se deben crear dos claves aparejadas, una clave pública y otra privada
 	//A continuación el array de configuración para la creación del juego de claves
 	$configArgs = array(
-		'config' => 'C:\xampp5_6_15\php\extras\openssl\openssl.cnf', //<-- esta ruta es necesaria si trabajas con XAMPP
+		'config' => 'C:\xampp\php\extras\openssl\openssl.cnf', //<-- esta ruta es necesaria si trabajas con XAMPP
 		'private_key_bits' => 2048,
 		'private_key_type' => OPENSSL_KEYTYPE_RSA
 	);
+	print_r("PASO 3 - Se crearon las claves!");print_r("<br />");
+	
 	
 	$resourceNewKeyPair = openssl_pkey_new($configArgs);
 	
@@ -23,10 +30,15 @@ function signature(string $filename, string $key) {
 		echo openssl_error_string(); //en el caso que la función anterior de openssl arrojará algun error, este sería visualizado gracias a esta línea
 		exit;
 	}
+	print_r("PASO 4 - Todo ok con el array de configuracion!");print_r("<br />");
+	
 	
 	//obtengo del recurso $resourceNewKeyPair la clave publica como un string 
 	$details = openssl_pkey_get_details($resourceNewKeyPair);
 	$publicKeyPem = $details['key'];
+	
+	print_r("PASO 5 - Clave publica a string!");print_r("<br />");
+	
 	
 	//obtengo la clave privada como string dentro de la variable $privateKeyPem (la cual es pasada por referencia)
 	if (!openssl_pkey_export($resourceNewKeyPair, $privateKeyPem, NULL, $configArgs)) {
@@ -34,15 +46,26 @@ function signature(string $filename, string $key) {
 		exit;
 	}
 	
+	print_r("PASO 6 - Clave privada a string!");print_r("<br />");
+	
 	//guardo la clave publica y privada en disco:
 	file_put_contents('private_key.pem', $privateKeyPem);
 	file_put_contents('public_key.pem', $publicKeyPem);
 	
+	print_r("PASO 7 - Guardo la clave publica y privada en disco!");print_r("<br />");
+	
+	
 	//si bien ya tengo cargado el string de la clave privada, lo voy a buscar a disco para verificar que el archivo private_key.pem haya sido correctamente generado:
 	$privateKeyPem = file_get_contents('private_key.pem');
 	
+	print_r("PASO 8- Verifico que private_key.pem este en disco!");print_r("<br />");
+	
+	
 	//obtengo la clave privada como resource desde el string
 	$resourcePrivateKey = openssl_get_privatekey($privateKeyPem);
+	
+	print_r("PASO 9- Obtengo la clave privada!");print_r("<br />");
+	
 	
 	//crear la firma dentro de la variable $firma (la cual es pasada por referencia)
 	if (!openssl_sign($datos, $firma, $resourcePrivateKey, OPENSSL_ALGO_SHA256)) {
@@ -50,17 +73,24 @@ function signature(string $filename, string $key) {
 		exit;
 	}
 	
+	print_r("PASO 10- Creo la firma!");print_r("<br />");
+	
 	// guardar la firma en disco:
 	file_put_contents('signature.dat', $firma);
+	
+	print_r("PASO 11- Guardo la firma en disco!");print_r("<br />");
 	
 	// comprobar la firma
 	if (openssl_verify($datos, $firma, $publicKeyPem, 'sha256WithRSAEncryption') === 1) {
 		echo 'la firma es valida y los datos son confiables';
+		print_r("<br />");
 	} else {
 		echo 'la firma es invalida y/o los datos fueron alterados';
+		print_r("<br />");
 	}
 	
-	return 0;
+	print_r("PASO 12- Verifico firma!");print_r("<br />");
+	return 1;
 }
 
 ?>

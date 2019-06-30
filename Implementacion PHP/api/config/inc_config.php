@@ -1,3 +1,3 @@
 <?php
-$WEBSERVER = 'seguridad.webcrashers.local';
+$WEBSERVER = 'localhost:8080';
 ?>

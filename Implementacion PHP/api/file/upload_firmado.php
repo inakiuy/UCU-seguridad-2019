@@ -23,14 +23,15 @@ if ($_FILES["fileToUpload"]["size"] > 500000) {
     $firmadoOk = 0;
 }
 
-print_r('PASO 1 - ANTES DE FIRMAR! PRINT');
+print_r("PASO 1 - Antes de firmar!");print_r("<br />");
+print_r("PASO 1.1 $target_file");print_r("<br />");
 // Firmar
-signature($target_file, "password");
+$firmadoOk = signature($target_file, "password");
 
 
 // Check if $uploadOk is set to 0 by an error
 if ($firmadoOk == 0) {
-    echo 'Ocurrio un problema al cifrar su archivo.<br>';
+    echo 'Ocurrio un problema al firmar el archivo.<br>';
 // if everything is ok, try to upload file
 } else {
 	echo '<pre>';
