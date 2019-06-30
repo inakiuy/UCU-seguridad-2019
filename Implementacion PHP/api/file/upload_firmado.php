@@ -10,7 +10,7 @@ $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $firmadoOk = 1;
 
 // Insertar link para volver
-echo "<a href='http://$WEBSERVER/firma.html'>Volver</a><br>";
+echo "<a href='http://$WEBSERVER/firmado.html'>Volver</a><br>";
 
 // Check if file already exists
 if (file_exists($target_file)) {
@@ -23,6 +23,7 @@ if ($_FILES["fileToUpload"]["size"] > 500000) {
     $firmadoOk = 0;
 }
 
+print_r('PASO 1 - ANTES DE FIRMAR! PRINT');
 // Firmar
 signature($target_file, "password");
 
