@@ -8,6 +8,9 @@ include_once '../config/inc_config.php';
 // incluir las funciones de cifrado y descifrado
 include_once './crypto.php';
 
+// incluir sesion
+include_once 'api/user/probar.php';
+
 // Coneccion a la base
 $database = new Database();
 $db = $database->getConnection();

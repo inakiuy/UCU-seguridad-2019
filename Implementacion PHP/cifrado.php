@@ -1,6 +1,6 @@
 <?php
 	// incluir sesion
-	include_once 'api/user/probar.php';
+	include_once './api/user/probar.php';
 ?>
 
 <!DOCTYPE html>
