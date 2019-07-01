@@ -14,7 +14,7 @@ $tmp_filename = $_FILES["fileToUpload"]["tmp_name"];
 $firmadoOk = 1;
 
 // Insertar link para volver
-echo "<a href='http://$WEBSERVER/firmado.html'>Volver</a><br>";
+echo "<a href='http://$WEBSERVER/firmado.php'>Volver</a><br>";
 
 // Check if file already exists
 if (file_exists($target_file)) {

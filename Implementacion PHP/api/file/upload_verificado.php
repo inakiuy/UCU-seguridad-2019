@@ -18,7 +18,7 @@ $tmp_filename_kp = $_FILES["fileToUpload_key_publica"]["tmp_name"];
 $verificadoOk = 1;
 
 // Insertar link para volver
-echo "<a href='http://$WEBSERVER/firmado.html'>Volver</a><br>";
+echo "<a href='http://$WEBSERVER/firmado.php'>Volver</a><br>";
 
 // Check file size
 if ($_FILES["fileToUpload"]["size"] > 500000) {
