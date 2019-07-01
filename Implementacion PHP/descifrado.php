@@ -1,3 +1,8 @@
+<?php
+	// incluir sesion
+	include_once 'api/user/probar.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en" >
 	<head>
