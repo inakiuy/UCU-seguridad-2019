@@ -74,8 +74,9 @@ if($stmt->rowCount() > 0){
         //se inicia la sesion
         session_start();
         $_SESSION['usuario'] = $user->username;
-
-        //el usuario quiere ser recordado
+		$_SESSION['id'] = $user->id;
+        
+		//el usuario quiere ser recordado
         if(!empty($_GET['check'])){
 
             $id = $row['id'];
