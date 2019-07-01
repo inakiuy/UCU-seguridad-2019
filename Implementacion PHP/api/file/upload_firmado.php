@@ -1,9 +1,12 @@
 <?php
+
 // incluir configuracion del sitio
 include_once '../config/inc_config.php';
 
 // incluir las funciones de firmado
 include_once './firma.php';
+
+
 
 $target_dir = "../../documentos/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
