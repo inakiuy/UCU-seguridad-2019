@@ -5,7 +5,7 @@ class Database{
     private $host = "localhost";
     private $db_name = "seguridad2019";
     private $username = "phpmyadmin";
-    private $password = "phpmy4adm1n";
+    private $password = "phpmy4dm1n";
     public $conn;
  
     // get the database connection

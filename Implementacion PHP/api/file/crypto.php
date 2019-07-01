@@ -8,7 +8,7 @@ function encrypt(string $filename, string $key) {
     $fileData = fread($file, filesize($filename));
     fclose($file);
 
-    $encryptedData = openssl_encrypt($fileData, "AES-256-CBC", $key, 0, $iv);
+    $encryptedData = openssl_encrypt($fileData, "AES-256-CBC", $key, OPENSSL_RAW_DATA, $iv);
 	if ($encryptedData != "FALSE"){
 		$fileToWrite = fopen($filename, 'wb');
 		fwrite($fileToWrite, $encryptedData);
@@ -26,10 +26,11 @@ function decrypt(string $filename, string $key) {
     $fileData = fread($file, filesize($filename));
     fclose($file);
 
-    $decryptedData = openssl_decrypt($fileData, "AES-256-CBC", $key, 0, $iv);
+    $decryptedData = openssl_decrypt($fileData, "AES-256-CBC", $key, OPENSSL_RAW_DATA, $iv);
 
-    $fileData = fopen($filename, 'wb');
-    fwrite($fileData, $decryptedData);
-    fclose($fileData);
+    //$fileData = fopen($filename, 'wb');
+    //fwrite($fileData, $decryptedData);
+    //fclose($filename);
+	return $decryptedData;
 }
 ?>
