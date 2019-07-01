@@ -66,6 +66,7 @@ $stmt->bindParam(":id_usuario", $id_usuario);
 				<input type="text" name="key" id="key"><br>
 				<input type="submit" value="Descargar Archivo" name="submit"><br>
 			</form>
+			<?php echo "<a href='http://$WEBSERVER/api/user/panelSesion.php'>Volver</a><br>"; ?>
 		</div>
 	</div>
 	</body>

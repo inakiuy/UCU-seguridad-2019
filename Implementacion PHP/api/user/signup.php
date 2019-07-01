@@ -22,7 +22,7 @@ $user->created = date('Y-m-d H:i:s');
 // create the user
 if($user->signup()){
     // Redirect browser 
-    header("Location: http://$WEBSERVER/index.html"); 
+    header("Location: http://$WEBSERVER/index.php"); 
     exit;    
     /*$user_arr=array(
         "status" => true,

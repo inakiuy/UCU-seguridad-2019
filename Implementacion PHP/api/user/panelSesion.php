@@ -16,7 +16,7 @@
 	<div class="group">
 		<label class="label">acceda a nuestros servicios de:</label><br><br><br>
 		<a href="../../cifrado.php">cifrado</a><br><br>
-		<a href="../../decifrado.php">decifrado</a><br><br>
+		<a href="../../descifrado.php">descifrado</a><br><br>
 		<a href="../../firmado.php">firmado</a><br><br>
 		<a href="cerrarSesion.php">cerrar sesion</a><br><br>
 	</div>

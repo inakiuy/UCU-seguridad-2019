@@ -24,7 +24,7 @@ $password = $_POST['key'];
 $status = 1;
 
 // Insertar link para volver
-echo "<a href='http://$WEBSERVER/cifrado.html'>Volver</a><br>";
+echo "<a href='http://$WEBSERVER/cifrado.php'>Volver</a><br>";
 
 // Cifrar
 $status = encrypt($tmp_filename, $password);

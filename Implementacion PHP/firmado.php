@@ -1,5 +1,7 @@
 <?php  
 	include_once 'api/user/probar.php';
+	// incluir configuracion del sitio
+	include_once './api/config/inc_config.php';
 ?>
 <!DOCTYPE html>
 <html lang="en" >
@@ -26,6 +28,7 @@
 				<p>Seleccionar llave pública</p><input type="file" name="fileToUpload_key_publica" id="fileToUpload_key_publica"><br><br>
 				<input type="submit" value="Verificar Firma" name="submit"><br>
 			</form>
+			<?php echo "<a href='http://$WEBSERVER/api/user/panelSesion.php'>Volver</a><br>"; ?>
 		</div>
 	</div>
 	</body>

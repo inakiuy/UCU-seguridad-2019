@@ -1,6 +1,8 @@
 <?php
 	// incluir sesion
 	include_once './api/user/probar.php';
+	// incluir configuracion del sitio
+	include_once './api/config/inc_config.php';
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +25,7 @@
 				<input type="text" name="key" id="key"><br>
 				<input type="submit" value="Cifrar Archivo" name="submit"><br>
 			</form>
+			<?php echo "<a href='http://$WEBSERVER/api/user/panelSesion.php'>Volver</a><br>"; ?>
 		</div>
 	</div>
 	</body>
