@@ -33,7 +33,7 @@ if($user->signup()){
 }
 else{
     // Redirect browser
-    header("Location: http://$WEBSERVER/index.html"); 
+    header("Location: http://$WEBSERVER/index.php"); 
     exit;
     /*$user_arr=array(
         "status" => false,

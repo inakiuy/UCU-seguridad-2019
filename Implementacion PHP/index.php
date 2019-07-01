@@ -19,14 +19,15 @@
       <form class="sign-in-htm" action="./api/user/login.php" method="GET">
         <div class="group">
           <label for="user" class="label">Usuario</label>
-          <input id="username" name="username" type="text" class="input">
+          <input id="username" name="username" type="text" class="input" value="">
         </div>
         <div class="group">
           <label for="pass" class="label">Contraseña</label>
-          <input id="password" name="password" type="password" class="input" data-type="password">
+          <input id="password" name="password" type="password" class="input" data-type="password" value="">
         </div>
         <div class="group">
-          <input id="check" type="checkbox" class="check" checked>
+          <!--linea modificada puse name-->
+          <input id="check" type="checkbox" name="check" class="check" checked>
           <label for="check"><span class="icon"></span> Mantenerme logueado</label>
         </div>
         <div class="group">
@@ -34,7 +35,7 @@
         </div>
         <div class="hr"></div>
         <div class="foot-lnk">
-          <a href="#forgot">Olvidó su contraseña?</a>
+          <!--<a href="#forgot">Olvidó su contraseña?</a>-->
         </div>
       </form>
       <form class="sign-up-htm" action="./api/user/signup.php" method="POST">

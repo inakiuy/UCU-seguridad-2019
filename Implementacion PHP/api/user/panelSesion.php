@@ -11,10 +11,14 @@
 <body>
 	<div class="login-wrap">
   	<div class="login-html">
-		<label class="label">bienvenido: <?php echo $_SESSION['usuario'] ?></label>
-	<div class="login-form">
-	<div class="group">		
-		<a href="cerrarSesion.php">cerrar sesion</a>
+		<label class="label">bienvenido: <?php echo $_SESSION['usuario'] ?></label><br><br><br>
+	<div class="login-form">		
+	<div class="group">
+		<label class="label">acceda a nuestros servicios de:</label><br><br><br>
+		<a href="../../cifrado.php">cifrado</a><br><br>
+		<a href="../../decifrado.php">decifrado</a><br><br>
+		<a href="../../firmado.php">firmado</a><br><br>
+		<a href="cerrarSesion.php">cerrar sesion</a><br><br>
 	</div>
 	</div>
 	</div>

@@ -1,4 +1,5 @@
 <?php
+
 	//se necesita iniciar la sesion cuando el acceso es para un usuario unicamente
 	session_start();
 	//esto es para ocultar errores al programador
