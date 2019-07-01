@@ -1,14 +1,14 @@
 <?php 
 
-function signature(string $filename, string $key) {
+function Signature(string $filename, string $target_dir ) {
 
 	print_r("PASO 2 - Entro en funcion signature!");print_r("<br />");
 	
     //Datos que se quieren firmar:
 	//$datos = 'Este texto será firmado. Thanks for your attention :)';
-	//$file = fopen($filename, 'rb');//rd: read en modo binario ASI ESTABA COMENTE PARA PROBAR!
-	$filename= 'C:\xampp\htdocs\uploads\hola.txt';//me da error la ruta de archivo, crear un archivo hola.txt con cualquier cosa dentro para probar.
-	$file = fopen($filename, 'rb');
+	$file = fopen($filename, 'rb');//rd: read en modo binario ASI ESTABA COMENTE PARA PROBAR!
+	//$filename= 'C:\xampp\htdocs\uploads\hola.txt';//me da error la ruta de archivo, crear un archivo hola.txt con cualquier cosa dentro para probar.
+	//$file = fopen($filename, 'rb');
 	$datos = fread($file, filesize($filename));
     fclose($file);
 	
@@ -49,17 +49,16 @@ function signature(string $filename, string $key) {
 	print_r("PASO 6 - Clave privada a string!");print_r("<br />");
 	
 	//guardo la clave publica y privada en disco:
-	file_put_contents('private_key.pem', $privateKeyPem);
-	file_put_contents('public_key.pem', $publicKeyPem);
+	file_put_contents($target_dir . 'private_key_' . basename($filename) . '.pem', $privateKeyPem);
+	file_put_contents($target_dir . 'public_key_' . basename($filename) . '.pem', $publicKeyPem);
 	
 	print_r("PASO 7 - Guardo la clave publica y privada en disco!");print_r("<br />");
 	
 	
 	//si bien ya tengo cargado el string de la clave privada, lo voy a buscar a disco para verificar que el archivo private_key.pem haya sido correctamente generado:
-	$privateKeyPem = file_get_contents('private_key.pem');
+	$privateKeyPem = file_get_contents($target_dir . 'private_key_' . basename($filename) . '.pem');
 	
 	print_r("PASO 8- Verifico que private_key.pem este en disco!");print_r("<br />");
-	
 	
 	//obtengo la clave privada como resource desde el string
 	$resourcePrivateKey = openssl_get_privatekey($privateKeyPem);
@@ -76,20 +75,50 @@ function signature(string $filename, string $key) {
 	print_r("PASO 10- Creo la firma!");print_r("<br />");
 	
 	// guardar la firma en disco:
-	file_put_contents('signature.dat', $firma);
+	file_put_contents($target_dir . 'signature_' . basename($filename) . '.dat', $firma);
 	
 	print_r("PASO 11- Guardo la firma en disco!");print_r("<br />");
 	
 	// comprobar la firma
 	if (openssl_verify($datos, $firma, $publicKeyPem, 'sha256WithRSAEncryption') === 1) {
-		echo 'la firma es valida y los datos son confiables';
+		echo 'La firma es valida y los datos son confiables';
 		print_r("<br />");
 	} else {
-		echo 'la firma es invalida y/o los datos fueron alterados';
+		echo 'La firma es invalida y/o los datos fueron alterados';
 		print_r("<br />");
+		return 0;
 	}
 	
 	print_r("PASO 12- Verifico firma!");print_r("<br />");
+	return 1;
+}
+
+function Verify(string $filename, string $filename_f, string $filename_kp ) {
+	
+	print_r("PASO 2 - Entro en funcion verify!");print_r("<br />");
+	
+	$file = fopen($filename, 'rb');//rd: read en modo binario
+	$datos = fread($file, filesize($filename));
+    fclose($file);
+	
+	$file_f = fopen($filename_f, 'rb');//rd: read en modo binario
+	$datos_f = fread($file_f, filesize($filename_f));
+    fclose($file_f);
+	
+	$file_kp = fopen($filename_kp, 'rb');//rd: read en modo binario
+	$datos_kp = fread($file_kp, filesize($filename_kp));
+    fclose($file_kp);
+	
+	// comprobar la firma
+	if (openssl_verify($datos, $datos_f, $datos_kp, 'sha256WithRSAEncryption') === 1) {
+		echo 'La firma es valida y los datos son confiables';
+		print_r("<br />");
+	} else {
+		echo 'La firma es invalida y/o los datos fueron alterados';
+		print_r("<br />");
+		return 0;
+	}
+	
 	return 1;
 }
 

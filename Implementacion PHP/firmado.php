@@ -1,3 +1,6 @@
+<?php  
+	include_once 'api/user/probar.php';
+?>
 <!DOCTYPE html>
 <html lang="en" >
 	<head>
@@ -15,6 +18,13 @@
 				Seleccione el archivo a firmar:<br><br>
 				<input type="file" name="fileToUpload" id="fileToUpload"><br>
 				<input type="submit" value="Firmar Archivo" name="submit"><br>
+			</form>
+			<form action="./api/file/upload_verificado.php" method="post" enctype="multipart/form-data">
+				<br><br>Seleccione el archivo a verificar:<br><br>
+				<p>Archivo</p><input type="file" name="fileToUpload" id="fileToUpload"><br>
+				<p>Seleccionar firma</p><input type="file" name="fileToUpload_firma" id="fileToUpload_firma"><br>
+				<p>Seleccionar llave pública</p><input type="file" name="fileToUpload_key_publica" id="fileToUpload_key_publica"><br><br>
+				<input type="submit" value="Verificar Firma" name="submit"><br>
 			</form>
 		</div>
 	</div>
